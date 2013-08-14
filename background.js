@@ -7,15 +7,15 @@ function clamp(x, lower, upper) {
 
 chrome.runtime.onInstalled.addListener(function () {
 	console.log('installed');
-	localStorage.setItem('period', 5);
-	localStorage.setItem('volume', 0.5);
+	localStorage.setItem('period', localStorage.getItem('period') || 5);
+	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 });
 
 chrome.runtime.onStartup.addListener(function () {
 	console.log('started');
 
 	chrome.alarms.create('pace', {
-		periodInMinutes: Math.max(.1, +localStorage.getItem('period')),
+		periodInMinutes: Math.max(0.1, +localStorage.getItem('period')),
 	});
 });
 

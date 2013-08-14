@@ -8,9 +8,8 @@ var periodElmt = document.getElementById('period'),
     volIndicator = document.getElementById('volume-indicator');
 
 periodElmt.onchange = function () {
-  var period = Math.max(0.1, +this.value == NaN ? localStorage.getItem('period') : +this.value);
+  var period = Math.max(0.1, +this.value);
   localStorage.setItem('period', period);
-  chrome.alarms.clearAll();
   chrome.alarms.create('pace', {
     periodInMinutes: period
   });
@@ -20,8 +19,12 @@ periodElmt.onchange = function () {
 volumeElmt.onchange = function () {
   var volume = clamp(+this.value, 0, 1);
   localStorage.setItem('volume', volume);
-  volIndicator.textContent = Math.ceil(volume * 100) + '%'
+  if (volume > 0) {
+    volIndicator.textContent = Math.ceil(volume * 100) + '%';
+  } else {
+    volIndicator.textContent = 'muted';
+  }
 };
 
-periodElmt.value = +localStorage.getItem('period');
-volumeElmt.value = +localStorage.getItem('volume');
+volumeElmt.onchange();
+periodElmt.onchange();

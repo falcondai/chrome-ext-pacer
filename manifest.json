@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"manifest_version": 2,
 
+	"author": "Falcon Dai",
 	"description": "A productivity tool that nudges you every X minutes to help pace yourself.",
 	"options_page": "options.html",
 	"permissions": [
