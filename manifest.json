@@ -7,7 +7,8 @@
 	"description": "A productivity tool that nudges you every X minutes to help pace yourself.",
 	"options_page": "options.html",
 	"permissions": [
-		"alarms"
+		"alarms",
+		"notifications"
 	],
 	"background": {
 		"persistent": false,

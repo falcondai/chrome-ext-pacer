@@ -4,8 +4,9 @@ function clamp(x, lower, upper) {
 
 var periodElmt = document.getElementById('period'),
     volumeElmt = document.getElementById('volume'),
-    perIndicator = document.getElementById('period-indicator');
-    volIndicator = document.getElementById('volume-indicator');
+    perIndicator = document.getElementById('period-indicator'),
+    volIndicator = document.getElementById('volume-indicator'),
+    notificationElmt = document.getElementById('notification');
 
 periodElmt.onchange = function () {
   var period = Math.max(0.1, +this.value);
@@ -26,5 +27,10 @@ volumeElmt.onchange = function () {
   }
 };
 
+notificationElmt.onchange = function () {
+  localStorage.setItem('show notifications', this.checked);
+};
+
 volumeElmt.onchange();
 periodElmt.onchange();
+notificationElmt.checked = localStorage.getItem('show notifications') == 'true';
