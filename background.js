@@ -10,6 +10,7 @@ chrome.runtime.onInstalled.addListener(function () {
 	localStorage.setItem('period', localStorage.getItem('period') || 0.1);
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || false);
+	localStorage.setItem('quote', localStorage.getItem('quote') || '');
 });
 
 chrome.runtime.onStartup.addListener(function () {
@@ -33,7 +34,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 		var notification = webkitNotifications.createNotification(
 			'', 
 			localStorage.getItem('period') + ' minutes has passed',
-			''
+			localStorage.getItem('quote')
 		);
 		notification.onclick = function () {
 			this.cancel();
