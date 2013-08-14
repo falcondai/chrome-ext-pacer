@@ -1,0 +1,18 @@
+doctype 5
+html
+  head
+    title Pacer Options
+    :stylus
+      body
+        font-family Ubuntu, Helvetica, sans-serif
+      input 
+        margin 10px
+  body
+    h1 Pacer Options
+    div period: 
+      input(type='text', placeholder='period in minutes >=1')#period
+      |  minutes
+    div volume: 
+      input(type='range', min=0, max=1, step=0.01, value=1)#volume
+      span#volume-indicator 100%
+    script(src='/options.js')
