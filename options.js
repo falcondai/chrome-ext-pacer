@@ -4,22 +4,23 @@ function clamp(x, lower, upper) {
 
 var periodElmt = document.getElementById('period'),
     volumeElmt = document.getElementById('volume'),
-    indicatorElmt = document.getElementById('volume-indicator');
+    perIndicator = document.getElementById('period-indicator');
+    volIndicator = document.getElementById('volume-indicator');
 
 periodElmt.onchange = function () {
-  chrome.alarms.clearAll();
   var period = Math.max(0.1, +this.value == NaN ? localStorage.getItem('period') : +this.value);
   localStorage.setItem('period', period);
+  chrome.alarms.clearAll();
   chrome.alarms.create('pace', {
     periodInMinutes: period
   });
-  this.value = period;
+  perIndicator.textContent = period + ' minutes';
 };
 
 volumeElmt.onchange = function () {
   var volume = clamp(+this.value, 0, 1);
   localStorage.setItem('volume', volume);
-  indicatorElmt.textContent = Math.ceil(volume * 100) + '%'
+  volIndicator.textContent = Math.ceil(volume * 100) + '%'
 };
 
 periodElmt.value = +localStorage.getItem('period');
