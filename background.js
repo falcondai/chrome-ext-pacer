@@ -11,6 +11,10 @@ chrome.runtime.onInstalled.addListener(function () {
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || false);
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
+
+	chrome.tabs.create({
+		url: chrome.extension.getURL('/options.html')
+	});
 });
 
 chrome.runtime.onStartup.addListener(function () {
