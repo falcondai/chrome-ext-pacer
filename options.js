@@ -60,11 +60,16 @@ notificationElmt.onchange = function () {
 quoteElmt.onchange = function () {
   localStorage.setItem('quote', this.value);
 }
+
 quoteElmt.oninput = function () {
   console.log(this.value.length, this.size);
   if (this.value.length == this.size) {
     this.size = this.value.length + 1;
   }
+};
+
+window.onbeforeunload = function () {
+  localStorage.setItem('quote', quoteElmt.value); 
 };
 
 volumeElmt.onchange(true);
