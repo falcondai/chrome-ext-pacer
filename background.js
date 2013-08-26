@@ -36,7 +36,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 	}
 	if (localStorage.getItem('show notifications') == 'true') {
 		var notification = webkitNotifications.createNotification(
-			'', 
+			'/assets/image/logo.png', 
 			localStorage.getItem('period') + ' minutes has passed',
 			localStorage.getItem('quote')
 		);

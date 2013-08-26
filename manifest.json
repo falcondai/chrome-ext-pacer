@@ -1,6 +1,6 @@
 {
 	"name": "Pacer",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"manifest_version": 2,
 
 	"author": "Falcon Dai",
@@ -13,5 +13,8 @@
 	"background": {
 		"persistent": false,
 		"page": "background.html"
-	}
+	},
+	"web_accessible_resources": [
+		"/assets/image/logo.png"
+	]
 }

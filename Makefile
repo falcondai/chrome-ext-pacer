@@ -10,4 +10,4 @@ clean:
 	rm -f $(EXT_NAME).zip
 
 package: manifest.json
-	zip -r $(EXT_NAME) * -x jade/ jade/* Makefile $(EXT_NAME).zip
+	zip -r $(EXT_NAME) * -x graphics/ graphics/* jade/ jade/* Makefile $(EXT_NAME).zip
