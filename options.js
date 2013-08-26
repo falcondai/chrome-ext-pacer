@@ -68,6 +68,12 @@ quoteElmt.oninput = function () {
   }
 };
 
+document.getElementById('test').onclick = function () {
+  chrome.alarms.create('test', {
+    when: Date.now()
+  });
+}
+
 window.onbeforeunload = function () {
   localStorage.setItem('quote', quoteElmt.value); 
 };
