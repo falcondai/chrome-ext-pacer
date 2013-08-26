@@ -61,13 +61,6 @@ quoteElmt.onchange = function () {
   localStorage.setItem('quote', this.value);
 }
 
-quoteElmt.oninput = function () {
-  console.log(this.value.length, this.size);
-  if (this.value.length == this.size) {
-    this.size = this.value.length + 1;
-  }
-};
-
 document.getElementById('test').onclick = function () {
   chrome.alarms.create('test', {
     when: Date.now()
@@ -83,4 +76,3 @@ periodElmt.onchange(true);
 notificationElmt.checked = localStorage.getItem('show notifications') == 'true';
 quoteElmt.disabled = !notificationElmt.checked;
 quoteElmt.value = localStorage.getItem('quote');
-quoteElmt.size = quoteElmt.value.length + 1;
