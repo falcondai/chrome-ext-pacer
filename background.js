@@ -7,7 +7,7 @@ function clamp(x, lower, upper) {
 
 chrome.runtime.onInstalled.addListener(function () {
 	console.log('installed');
-	localStorage.setItem('period', localStorage.getItem('period') || 0.1);
+	localStorage.setItem('period', localStorage.getItem('period') || 10);
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || false);
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
@@ -21,7 +21,7 @@ chrome.runtime.onStartup.addListener(function () {
 	console.log('started');
 
 	chrome.alarms.create('pace', {
-		periodInMinutes: Math.max(0.1, +localStorage.getItem('period')),
+		periodInMinutes: +localStorage.getItem('period'),
 	});
 });
 
