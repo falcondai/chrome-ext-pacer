@@ -21,7 +21,15 @@ html
         font-size 1em
         padding 5px
         border-radius 5px
-
+      .foot
+        margin-top 20px
+        color #888
+        font-size 0.9em
+        a
+          color #444
+          text-decoration none
+          &:hover
+            color black
   body
     h1 Pacer Options
     div period: 
@@ -36,3 +44,5 @@ html
       input(type='text', placeholder='some inspirational quote', size=64)#quote
     button#test show nudge sample
     script(src='/options.js')
+    .foot &copy; 2013 
+      a(href='http://twitter.com/falcondai', target='_blank') Falcon Dai
