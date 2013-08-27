@@ -2,6 +2,10 @@ chrome-ext-pacer
 ================
 a chrome browser extension that nudges you every X minutes. 
 
+screenshot
+----------
+![screenshot](https://raw.github.com/falcondai/chrome-ext-pacer/master/graphics/screenshot.png)
+
 license
 -------
 The source code is licensed under MIT License.
