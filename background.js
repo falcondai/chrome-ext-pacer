@@ -39,6 +39,10 @@ chrome.runtime.onInstalled.addListener(function () {
 	chrome.tabs.create({
 		url: chrome.extension.getURL('/options.html')
 	});
+
+	chrome.alarms.create('pace', {
+    periodInMinutes: localStorage.getItem('period')
+  });
 });
 
 chrome.runtime.onStartup.addListener(function () {

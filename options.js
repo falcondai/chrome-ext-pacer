@@ -14,7 +14,7 @@ var periodElmt = document.getElementById('period'),
 periodElmt.onchange = function (init) {
   var period;
   if (init !== true) {
-    period = Math.max(0.1, +this.value);
+    period = Math.max(1, +this.value);
     localStorage.setItem('period', period);
     chrome.alarms.create('pace', {
       periodInMinutes: period
@@ -62,9 +62,6 @@ quoteElmt.onchange = function () {
 }
 
 document.getElementById('test').onclick = function () {
-  // chrome.alarms.create('test', {
-  //   when: Date.now()
-  // });
   chrome.runtime.sendMessage({test: 'alarm'});
 }
 
