@@ -1,3 +1,5 @@
+![splash](https://raw.github.com/falcondai/chrome-ext-pacer/master/graphics/promo.png)
+
 chrome-ext-pacer
 ================
 a chrome browser extension that nudges you every X minutes. 

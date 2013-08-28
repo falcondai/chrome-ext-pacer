@@ -1,4 +1,4 @@
-A simple utility that nudges you every X minutes to make you aware of the passing time. It does so via a brief audible tone and an ephemeral desktop notification popup, both optional. 
+It nudges you every X minutes via a brief audible tone and an ephemeral desktop notification popup, both optional. 
 
 This tool aids you to achieve higher productivity. I built it for myself and found it useful.
 

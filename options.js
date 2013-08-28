@@ -62,9 +62,10 @@ quoteElmt.onchange = function () {
 }
 
 document.getElementById('test').onclick = function () {
-  chrome.alarms.create('test', {
-    when: Date.now()
-  });
+  // chrome.alarms.create('test', {
+  //   when: Date.now()
+  // });
+  chrome.runtime.sendMessage({test: 'alarm'});
 }
 
 window.onbeforeunload = function () {
