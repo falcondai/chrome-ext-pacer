@@ -3,9 +3,9 @@ It nudges you every X minutes via a brief audible tone and an ephemeral desktop 
 This tool aids you to achieve higher productivity. I built it for myself and found it useful.
 
 The feature set is minimalist but every feature is well-crafted. The options page is self-explanatory:
-1. set the time interval of the nudge, from 1 to 60 minutes.
-2. mute or adjust the volume of a brief audible tone.
-3. show or hide the desktop notification popup.
-4. option to enter a motivational quote to show in the notification popup.
+* set the time interval of the nudge, from 1 to 60 minutes.
+* mute or adjust the volume of a brief audible tone.
+* show or hide the desktop notification popup.
+* option to enter a motivational quote to show in the notification popup.
 
-Please leave feedbacks and I will incorporate them in future releases.
+Please leave feedback and I will incorporate them in future releases.

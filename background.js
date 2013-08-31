@@ -33,7 +33,7 @@ chrome.runtime.onInstalled.addListener(function () {
 	console.log('installed');
 	localStorage.setItem('period', localStorage.getItem('period') || 10);
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
-	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || false);
+	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || 'false');
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
 
 	chrome.tabs.create({
@@ -41,7 +41,7 @@ chrome.runtime.onInstalled.addListener(function () {
 	});
 
 	chrome.alarms.create('pace', {
-    periodInMinutes: localStorage.getItem('period')
+    periodInMinutes: +localStorage.getItem('period')
   });
 });
 

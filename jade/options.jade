@@ -1,13 +1,19 @@
 doctype 5
 html
   head
-    title Pacer Options
+    title Options : Pacer
     link(rel='icon', href='/assets/image/logo.png')
     :stylus
       body
         font-family Ubuntu, Helvetica, sans-serif
       h1
         color steelblue
+      .tips
+        margin 10px auto
+        color #888
+        transition color 0.2s ease-in-out
+        &:hover
+          color black
       input 
         margin 10px
         &[type="text"]
@@ -15,8 +21,14 @@ html
           border-radius 5px
           border 2px solid steelblue
           padding 5px
+          transition box-shadow 0.3s ease-in-out
           &:focus
+            box-shadow 0 0 10px hsla(200, 80%, 70%, 0.8)
             outline none
+          &:disabled
+            background-color rgb(235, 235, 228)
+        &[type="range"]
+          width 400px
       button
         font-size 1em
         padding 5px
@@ -31,8 +43,9 @@ html
           &:hover
             color black
   body
-    h1 Pacer Options
-    div period: 
+    h1 Options : Pacer
+    .tips Tips: notice how the same time interval feels longer as you are becoming more productive! Adjust the interval periodically.
+    div interval: 
       input(type='range', min=1, max=60, step=1, value=5)#period
       span#period-indicator 5 minutes
     div volume: 

@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pacer Options</title>
+    <title>Options : Pacer</title>
     <link rel="icon" href="/assets/image/logo.png"><style type="text/css">body {
   font-family: Ubuntu, Helvetica, sans-serif;
 }
 h1 {
   color: #4682b4;
+}
+.tips {
+  margin: 10px auto;
+  color: #888;
+  transition: color 0.2s ease-in-out;
+}
+.tips:hover {
+  color: #000;
 }
 input {
   margin: 10px;
@@ -16,9 +24,17 @@ input[type="text"] {
   border-radius: 5px;
   border: 2px solid #4682b4;
   padding: 5px;
+  transition: box-shadow 0.3s ease-in-out;
 }
 input[type="text"]:focus {
+  box-shadow: 0 0 10px rgba(117,199,240,0.8);
   outline: none;
+}
+input[type="text"]:disabled {
+  background-color: #ebebe4;
+}
+input[type="range"] {
+  width: 400px;
 }
 button {
   font-size: 1em;
@@ -40,8 +56,9 @@ button {
 </style>
   </head>
   <body>
-    <h1>Pacer Options</h1>
-    <div>period: 
+    <h1>Options : Pacer</h1>
+    <div class="tips">Tips: notice how the same time interval feels longer as you are becoming more productive! Adjust the interval periodically.</div>
+    <div>interval: 
       <input type="range" min="1" max="60" step="1" value="5" id="period"><span id="period-indicator">5 minutes</span>
     </div>
     <div>volume: 
