@@ -29,16 +29,35 @@ function playAlarm() {
 	}
 }
 
-chrome.runtime.onInstalled.addListener(function () {
-	console.log('installed');
+chrome.runtime.onInstalled.addListener(function (details) {
+	console.log('installed:', details);
+
 	localStorage.setItem('period', localStorage.getItem('period') || 10);
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || 'false');
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
 
-	chrome.tabs.create({
-		url: chrome.extension.getURL('/options.html')
-	});
+	if (details.reason == 'install') {
+		chrome.tabs.create({
+			url: chrome.extension.getURL('/options.html')
+		});
+	} else if (details.reason == 'update') {
+		var notification = webkitNotifications.createNotification(
+			'/assets/image/logo.png', 
+			'Pacer is updated',
+			'click to visit options page'
+		);
+		notification.onclick = function () {
+			chrome.tabs.create({
+				url: chrome.extension.getURL('/options.html')
+			});
+			this.cancel();
+		}
+		notification.show();
+		setTimeout(function () {
+			notification.cancel();
+		}, 5000);
+	}
 
 	chrome.alarms.create('pace', {
     periodInMinutes: +localStorage.getItem('period')
