@@ -69,8 +69,27 @@ window.onbeforeunload = function () {
   localStorage.setItem('quote', quoteElmt.value); 
 };
 
+// init UI
 volumeElmt.onchange(true);
 periodElmt.onchange(true);
 notificationElmt.checked = localStorage.getItem('show notifications') == 'true';
 quoteElmt.disabled = !notificationElmt.checked;
 quoteElmt.value = localStorage.getItem('quote');
+
+// set up action links
+var eid = chrome.runtime.id,
+    supportUrl = 'https://chrome.google.com/webstore/support/' + eid,
+    storeUrl = 'https://chrome.google.com/webstore/detail/' + eid;
+document.getElementById('ask').href = supportUrl + '#question';
+document.getElementById('suggest').href = supportUrl + '#feature';
+document.getElementById('report').href = supportUrl + '#bug';
+document.getElementById('rate').href = storeUrl + '/reviews';
+
+//share links
+document.getElementById('facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + storeUrl;
+document.getElementById('twitter').href = 'https://twitter.com/intent/tweet?text=pacer chrome extension&via=falcondai&url=' + storeUrl;
+document.getElementById('gplus').href = 'https://plus.google.com/share?url=' + storeUrl;
+
+document.getElementById('share').onclick = function () {
+  document.getElementById('social').className = document.getElementById('social').className ? '' : 'show';
+};

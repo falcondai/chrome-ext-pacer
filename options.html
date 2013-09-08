@@ -46,12 +46,44 @@ button {
   color: #888;
   font-size: 0.9em;
 }
-.foot a {
+a {
+  transition: color 0.2s ease-in-out;
   color: #444;
   text-decoration: none;
 }
-.foot a:hover {
-  color: #000;
+a:hover {
+  color: #4682b4;
+}
+.actions {
+  margin-top: 50px;
+  padding-top: 10px;
+  border-top: 1px solid #888;
+}
+.actions a {
+  margin: auto 16px;
+}
+.actions>a:first-child {
+  margin-left: 0;
+}
+#social {
+  display: inline-block;
+  transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transform: perspective(300px) rotateX(90deg);
+}
+#social.show {
+  -webkit-transform: perspective(300px) rotateX(0deg);
+}
+.foot a {
+  margin: auto;
+}
+#facebook:hover {
+  color: #3b579d;
+}
+#twitter:hover {
+  color: #00aced;
+}
+#gplus:hover {
+  color: #dd4b39;
 }
 </style>
   </head>
@@ -70,7 +102,10 @@ button {
       <input type="text" placeholder="some inspirational quote" size="64" id="quote">
     </div>
     <button id="test">show nudge sample</button>
+    <div class="actions"><a href="#" id="ask">ask a question</a><a href="#" id="suggest">suggest a new feature</a><a href="#" id="report">report an issue</a><a href="#" id="rate">rate this extension</a><a href="#" id="share">share with friends</a>
+      <div id="social"><a href="#" target="_blank" id="facebook">facebook</a><a href="#" target="_blank" id="twitter">twitter</a><a href="#" target="_blank" id="gplus">google+</a></div>
+      <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a></div>
+    </div>
     <script src="/options.js"></script>
-    <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a></div>
   </body>
 </html>
