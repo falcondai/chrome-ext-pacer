@@ -38,6 +38,7 @@ html
         color #888
         font-size 0.9em
       a
+        display inline-block
         transition color 0.2s ease-in-out
         color #444
         text-decoration none
@@ -45,18 +46,19 @@ html
           color steelblue
       .actions
         margin-top 50px
-        padding-top 10px
         border-top 1px solid #888
         a
-          margin auto 16px
-      .actions>a:first-child
-        margin-left 0
+          margin 16px 32px 0px 0px
+      .actions>span
+        display inline-block
       #social
         display inline-block
         transition -webkit-transform 0.3s ease-in-out
         -webkit-transform perspective(300px) rotateX(90deg)
         &.show
           -webkit-transform perspective(300px) rotateX(0deg)
+        &>a
+          margin-top 0
       .foot a
         margin auto
       #facebook:hover
@@ -85,11 +87,12 @@ html
       a(href='#')#suggest suggest a new feature
       a(href='#')#report report an issue
       a(href='#')#rate rate this extension
-      a(href='#')#share share with friends
-      #social
-        a(href='#', target='_blank')#facebook facebook
-        a(href='#', target='_blank')#twitter twitter
-        a(href='#', target='_blank')#gplus google+
+      span
+        a(href='#')#share share with friends
+        #social
+          a(href='#', target='_blank')#facebook facebook
+          a(href='#', target='_blank')#twitter twitter
+          a(href='#', target='_blank')#gplus google+
       .foot &copy; 2013 
         a(href='http://twitter.com/falcondai', target='_blank') Falcon Dai
 

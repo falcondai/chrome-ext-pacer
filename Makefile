@@ -5,6 +5,9 @@ all: clean pages package
 pages: 
 	jade jade/*.jade -Po .
 
+watch:
+	jade jade/*.jade -wPo .
+
 clean:
 	rm -rf *~
 	rm -f $(EXT_NAME).zip
