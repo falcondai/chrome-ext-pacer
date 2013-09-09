@@ -40,6 +40,7 @@ button {
   font-size: 1em;
   padding: 5px;
   border-radius: 5px;
+  margin-top: 15px;
 }
 .foot {
   margin-top: 20px;
@@ -68,13 +69,15 @@ a:hover {
 #social {
   display: inline-block;
   transition: -webkit-transform 0.3s ease-in-out;
-  -webkit-transform: perspective(300px) rotateX(90deg);
-}
-#social.show {
-  -webkit-transform: perspective(300px) rotateX(0deg);
 }
 #social>a {
   margin-top: 0;
+}
+.hide {
+  -webkit-transform: perspective(300px) rotateX(90deg);
+}
+.show {
+  -webkit-transform: perspective(300px) rotateX(0deg);
 }
 .foot a {
   margin: auto;
@@ -93,20 +96,23 @@ a:hover {
   <body>
     <h1>Options : Pacer</h1>
     <div class="tips">Tips: notice how the same time interval feels longer as you are becoming more productive! Adjust the interval periodically.</div>
-    <div>interval: 
+    <div>interval : 
       <input type="range" min="1" max="60" step="1" value="5" id="period"><span id="period-indicator">5 minutes</span>
     </div>
-    <div>volume: 
+    <div>volume : 
       <audio id="chime" src="/assets/sound/91926__corsica-s__ding.wav"></audio>
       <input type="range" min="0" max="1" step="0.01" value="1" id="volume"><span id="volume-indicator">100%</span>
     </div>
-    <div>desktop notification:
+    <div>desktop notification :
       <input type="checkbox" id="notification">
       <input type="text" placeholder="some inspirational quote" size="64" id="quote">
     </div>
+    <div>holo timer display :
+      <input type="checkbox" id="holo">
+    </div>
     <button id="test">show nudge sample</button>
     <div class="actions"><a href="#" id="ask">ask a question</a><a href="#" id="suggest">suggest a new feature</a><a href="#" id="report">report an issue</a><a href="#" id="rate">rate this extension</a><span><a href="#" id="share">share with friends</a>
-        <div id="social"><a href="#" target="_blank" id="facebook">facebook</a><a href="#" target="_blank" id="twitter">twitter</a><a href="#" target="_blank" id="gplus">google+</a></div></span>
+        <div id="social" class="hide"><a href="#" target="_blank" id="facebook">facebook</a><a href="#" target="_blank" id="twitter">twitter</a><a href="#" target="_blank" id="gplus">google+</a></div></span>
       <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a></div>
     </div>
     <script src="/options.js"></script>

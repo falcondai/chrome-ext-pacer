@@ -9,6 +9,7 @@ var periodElmt = document.getElementById('period'),
     notificationElmt = document.getElementById('notification'),
     quoteElmt = document.getElementById('quote'),
     chime = document.getElementById('chime'),
+    holo = document.getElementById('holo'),
     testChimeHandle;
 
 periodElmt.onchange = function (init) {
@@ -16,6 +17,10 @@ periodElmt.onchange = function (init) {
   if (init !== true) {
     period = Math.max(1, +this.value);
     localStorage.setItem('period', period);
+    chrome.storage.local.set({
+      period: period,
+      lastAlarm: Date.now()
+    });
     chrome.alarms.create('pace', {
       periodInMinutes: period
     });
@@ -59,11 +64,48 @@ notificationElmt.onchange = function () {
 
 quoteElmt.onchange = function () {
   localStorage.setItem('quote', this.value);
-}
+};
+
+holo.onchange = function () {
+  if (holo.checked) {
+    chrome.permissions.request({
+      permissions: ['tabs'],
+      origins: [
+        'https://*/*',
+        'http://*/*'
+      ],
+    }, function(granted) {
+      if (granted) {
+        console.log('holo granted');
+        localStorage.setItem('holo', 'show');
+      } else {
+        console.log('holo denied');
+        holo.checked = false;
+      }
+    });
+  } else {
+    chrome.permissions.remove({
+      permissions: ['tabs'],
+      origins: [
+        'https://*/*',
+        'http://*/*'
+      ]
+    }, function(removed) {
+      if (removed) {
+        console.log('holo removed');
+        localStorage.setItem('holo', 'hide');
+      } else {
+        holo.checked = true;
+        alert('Error: ' + chrome.runtime.lastError);
+        console.log(chrome.runtime.lastError);
+      }
+    });
+  }
+};
 
 document.getElementById('test').onclick = function () {
   chrome.runtime.sendMessage({test: 'alarm'});
-}
+};
 
 window.onbeforeunload = function () {
   localStorage.setItem('quote', quoteElmt.value); 
@@ -75,6 +117,7 @@ periodElmt.onchange(true);
 notificationElmt.checked = localStorage.getItem('show notifications') == 'true';
 quoteElmt.disabled = !notificationElmt.checked;
 quoteElmt.value = localStorage.getItem('quote');
+holo.checked = localStorage.getItem('holo') == 'show';
 
 // set up action links
 var eid = chrome.runtime.id,
@@ -91,5 +134,5 @@ document.getElementById('twitter').href = 'https://twitter.com/intent/tweet?text
 document.getElementById('gplus').href = 'https://plus.google.com/share?url=' + storeUrl;
 
 document.getElementById('share').onclick = function () {
-  document.getElementById('social').className = document.getElementById('social').className ? '' : 'show';
+  document.getElementById('social').className = document.getElementById('social').className == 'show' ? 'hide' : 'show';
 };

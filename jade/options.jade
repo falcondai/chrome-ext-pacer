@@ -33,6 +33,7 @@ html
         font-size 1em
         padding 5px
         border-radius 5px
+        margin-top 15px
       .foot
         margin-top 20px
         color #888
@@ -54,11 +55,12 @@ html
       #social
         display inline-block
         transition -webkit-transform 0.3s ease-in-out
-        -webkit-transform perspective(300px) rotateX(90deg)
-        &.show
-          -webkit-transform perspective(300px) rotateX(0deg)
         &>a
           margin-top 0
+      .hide
+        -webkit-transform perspective(300px) rotateX(90deg)
+      .show
+        -webkit-transform perspective(300px) rotateX(0deg)
       .foot a
         margin auto
       #facebook:hover
@@ -70,16 +72,18 @@ html
   body
     h1 Options : Pacer
     .tips Tips: notice how the same time interval feels longer as you are becoming more productive! Adjust the interval periodically.
-    div interval: 
+    div interval : 
       input(type='range', min=1, max=60, step=1, value=5)#period
       span#period-indicator 5 minutes
-    div volume: 
+    div volume : 
       audio(id='chime', src='/assets/sound/91926__corsica-s__ding.wav')
       input(type='range', min=0, max=1, step=0.01, value=1)#volume
       span#volume-indicator 100%
-    div desktop notification:
+    div desktop notification :
       input(type='checkbox')#notification
       input(type='text', placeholder='some inspirational quote', size=64)#quote
+    div holo timer display :
+      input(type='checkbox')#holo
     button#test show nudge sample
 
     .actions
@@ -89,7 +93,7 @@ html
       a(href='#')#rate rate this extension
       span
         a(href='#')#share share with friends
-        #social
+        #social.hide
           a(href='#', target='_blank')#facebook facebook
           a(href='#', target='_blank')#twitter twitter
           a(href='#', target='_blank')#gplus google+
