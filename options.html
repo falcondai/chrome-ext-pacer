@@ -16,6 +16,9 @@ h1 {
 .tips:hover {
   color: #000;
 }
+span {
+  display: inline-block;
+}
 input {
   margin: 10px;
 }
@@ -104,11 +107,11 @@ a:hover {
       <input type="range" min="0" max="1" step="0.01" value="1" id="volume"><span id="volume-indicator">100%</span>
     </div>
     <div>desktop notification :
-      <input type="checkbox" id="notification">
+      <input type="checkbox" title="show a little popup on your desktop" id="notification">
       <input type="text" placeholder="some inspirational quote" size="64" id="quote">
     </div>
     <div>holo timer display :
-      <input type="checkbox" id="holo">
+      <input type="checkbox" title="show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (just to show the UI). you can revoke the extra permission anytime by turning this off" id="holo">
     </div>
     <button id="test">show nudge sample</button>
     <div class="actions"><a href="#" id="ask">ask a question</a><a href="#" id="suggest">suggest a new feature</a><a href="#" id="report">report an issue</a><a href="#" id="rate">rate this extension</a><span><a href="#" id="share">share with friends</a>

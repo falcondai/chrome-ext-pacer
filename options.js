@@ -135,4 +135,5 @@ document.getElementById('gplus').href = 'https://plus.google.com/share?url=' + s
 
 document.getElementById('share').onclick = function () {
   document.getElementById('social').className = document.getElementById('social').className == 'show' ? 'hide' : 'show';
+  return false;
 };

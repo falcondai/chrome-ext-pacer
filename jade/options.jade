@@ -14,6 +14,8 @@ html
         transition color 0.2s ease-in-out
         &:hover
           color black
+      span
+        display inline-block
       input 
         margin 10px
         &[type="text"]
@@ -80,10 +82,10 @@ html
       input(type='range', min=0, max=1, step=0.01, value=1)#volume
       span#volume-indicator 100%
     div desktop notification :
-      input(type='checkbox')#notification
+      input(type='checkbox', title='show a little popup on your desktop')#notification
       input(type='text', placeholder='some inspirational quote', size=64)#quote
     div holo timer display :
-      input(type='checkbox')#holo
+      input(type='checkbox', title='show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (just to show the UI). you can revoke the extra permission anytime by turning this off')#holo
     button#test show nudge sample
 
     .actions
