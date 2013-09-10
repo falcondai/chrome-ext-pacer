@@ -19,6 +19,15 @@ h1 {
 span {
   display: inline-block;
 }
+span.group {
+  margin: auto 20px;
+}
+#blue:hover {
+  color: #9aecf0;
+}
+#red:hover {
+  color: #e03333;
+}
 input {
   margin: 10px;
 }
@@ -58,6 +67,9 @@ a {
 }
 a:hover {
   color: #4682b4;
+}
+a.disabled {
+  color: #888 !important;
 }
 .actions {
   margin-top: 50px;
@@ -111,13 +123,14 @@ a:hover {
       <input type="text" placeholder="some inspirational quote" size="64" id="quote">
     </div>
     <div>holo timer display :
-      <input type="checkbox" title="show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (just to show the UI). you can revoke the extra permission anytime by turning this off" id="holo">
+      <input type="checkbox" title="show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (to show the UI only). you can revoke the extra permission anytime by turning this off" id="holo"><span class="group"> <a href="#" id="blue">blue</a> | <a href="#" id="red">red</a></span><span class="group"><a href="#" id="tick">tick</a> | <a href="#" id="continuous">continuous</a></span>
     </div>
     <button id="test">show nudge sample</button>
     <div class="actions"><a href="#" id="ask">ask a question</a><a href="#" id="suggest">suggest a new feature</a><a href="#" id="report">report an issue</a><a href="#" id="rate">rate this extension</a><span><a href="#" id="share">share with friends</a>
         <div id="social" class="hide"><a href="#" target="_blank" id="facebook">facebook</a><a href="#" target="_blank" id="twitter">twitter</a><a href="#" target="_blank" id="gplus">google+</a></div></span>
       <div class="foot">&copy; 2013 <a href="http://twitter.com/falcondai" target="_blank">Falcon Dai</a></div>
     </div>
+    <script src="/holo.js"></script>
     <script src="/options.js"></script>
   </body>
 </html>

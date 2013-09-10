@@ -1,7 +1,3 @@
-function clamp(x, lower, upper) {
-  return Math.max(lower, Math.min(x, upper));
-}
-
 var periodElmt = document.getElementById('period'),
     volumeElmt = document.getElementById('volume'),
     perIndicator = document.getElementById('period-indicator'),
@@ -9,8 +5,26 @@ var periodElmt = document.getElementById('period'),
     notificationElmt = document.getElementById('notification'),
     quoteElmt = document.getElementById('quote'),
     chime = document.getElementById('chime'),
-    holo = document.getElementById('holo'),
+    holoElmt = document.getElementById('holo'),
     testChimeHandle;
+
+function clamp(x, lower, upper) {
+  return Math.max(lower, Math.min(x, upper));
+}
+
+function enableToggles(x) {
+  document.querySelectorAll('.group>a').map(function(e) {
+    e.className = '';
+  });
+}
+
+function disableToggles(x) {
+  document.querySelectorAll('.group>a').map(function(e) {
+    e.className = 'disabled';
+  });
+}
+
+NodeList.prototype.map = Array.prototype.map;
 
 periodElmt.onchange = function (init) {
   var period;
@@ -66,8 +80,8 @@ quoteElmt.onchange = function () {
   localStorage.setItem('quote', this.value);
 };
 
-holo.onchange = function () {
-  if (holo.checked) {
+holoElmt.onchange = function () {
+  if (holoElmt.checked) {
     chrome.permissions.request({
       permissions: ['tabs'],
       origins: [
@@ -76,11 +90,13 @@ holo.onchange = function () {
       ],
     }, function(granted) {
       if (granted) {
-        console.log('holo granted');
+        console.log('holo permission granted');
         localStorage.setItem('holo', 'show');
+        chrome.storage.local.set({holo: 'show'});
+        enableToggles();
       } else {
         console.log('holo denied');
-        holo.checked = false;
+        holoElmt.checked = false;
       }
     });
   } else {
@@ -92,15 +108,45 @@ holo.onchange = function () {
       ]
     }, function(removed) {
       if (removed) {
-        console.log('holo removed');
+        console.log('holo permission removed');
         localStorage.setItem('holo', 'hide');
+        chrome.storage.local.set({holo: 'hide'});
+        disableToggles();
       } else {
-        holo.checked = true;
+        holoElmt.checked = true;
         alert('Error: ' + chrome.runtime.lastError);
         console.log(chrome.runtime.lastError);
       }
     });
   }
+};
+
+document.querySelector('#blue').onclick = function() {
+  if (this.className.split(' ').indexOf('disabled') == -1) {
+    chrome.storage.local.set({color: 'blue'});
+  }
+  return false;
+};
+
+document.querySelector('#red').onclick = function() {
+  if (this.className.split(' ').indexOf('disabled') == -1) {
+    chrome.storage.local.set({color: 'red'});
+  }
+  return false;
+};
+
+document.querySelector('#tick').onclick = function() {
+  if (this.className.split(' ').indexOf('disabled') == -1) {
+    chrome.storage.local.set({useTick: true});
+  }
+  return false;
+};
+
+document.querySelector('#continuous').onclick = function() {
+  if (this.className.split(' ').indexOf('disabled') == -1) {
+    chrome.storage.local.set({useTick: false});
+  }
+  return false;
 };
 
 document.getElementById('test').onclick = function () {
@@ -117,7 +163,15 @@ periodElmt.onchange(true);
 notificationElmt.checked = localStorage.getItem('show notifications') == 'true';
 quoteElmt.disabled = !notificationElmt.checked;
 quoteElmt.value = localStorage.getItem('quote');
-holo.checked = localStorage.getItem('holo') == 'show';
+
+if (localStorage.getItem('holo') != 'hide') {
+  holoElmt.checked = true;
+  enableToggles();
+} else {
+  holoElmt.checked = false;
+  disableToggles();
+}
+document.body.appendChild(holo);
 
 // set up action links
 var eid = chrome.runtime.id,

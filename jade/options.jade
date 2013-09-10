@@ -16,6 +16,12 @@ html
           color black
       span
         display inline-block
+        &.group
+          margin auto 20px
+      #blue:hover
+        color #9aecf0
+      #red:hover
+        color #e03333
       input 
         margin 10px
         &[type="text"]
@@ -47,6 +53,8 @@ html
         text-decoration none
         &:hover
           color steelblue
+        &.disabled
+          color: #888 !important;
       .actions
         margin-top 50px
         border-top 1px solid #888
@@ -85,7 +93,16 @@ html
       input(type='checkbox', title='show a little popup on your desktop')#notification
       input(type='text', placeholder='some inspirational quote', size=64)#quote
     div holo timer display :
-      input(type='checkbox', title='show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (just to show the UI). you can revoke the extra permission anytime by turning this off')#holo
+      input(type='checkbox', title='show a slim countdown progress bar at the top of web pages. requires extra permission to access all webpages (to show the UI only). you can revoke the extra permission anytime by turning this off')#holo
+      span.group 
+        a(href='#')#blue blue
+        |  | 
+        a(href='#')#red red
+      span.group
+        a(href='#')#tick tick
+        |  | 
+        a(href='#')#continuous continuous
+        
     button#test show nudge sample
 
     .actions
@@ -102,4 +119,5 @@ html
       .foot &copy; 2013 
         a(href='http://twitter.com/falcondai', target='_blank') Falcon Dai
 
+    script(src='/holo.js')
     script(src='/options.js')

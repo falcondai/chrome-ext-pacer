@@ -33,11 +33,19 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	console.log('installed:', details);
 
 	localStorage.setItem('period', localStorage.getItem('period') || 10);
-	chrome.storage.local.set({period: +localStorage.getItem('period') || 10});
+	chrome.storage.local.get(['color', 'holo', 'useTick'], function(items) {
+		chrome.storage.local.set({
+			period: +localStorage.getItem('period') || 10,
+			color: items.color || 'blue',
+			holo: items.holo || localStorage.getItem('holo') || 'hide',
+			useTick: items.useTick || true,
+		});
+	});
 	
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || 'false');
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
+
 	chrome.permissions.contains({
 		permissions: ['tabs'],
 		origins: ['https://*/*', 'http://*/*']
@@ -102,11 +110,14 @@ chrome.runtime.onMessage.addListener(playAlarm);
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	// console.log(changeInfo, tab.url);
-	if (localStorage.getItem('holo') == 'show') {
+	if (localStorage.getItem('holo') != 'hide') {
 		if (changeInfo.status == 'complete' && tab.url.substring(0, 4) == 'http') {
 			console.log('injected to', tab);
 			chrome.tabs.executeScript(null, {
 				file: '/holo.js'
+			});
+			chrome.tabs.executeScript(null, {
+				file: '/inject.js'
 			});
 		}
 	}
