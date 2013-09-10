@@ -30,20 +30,20 @@ function visibilityChange() {
     } else {
       window.cancelAnimationFrame(next); 
     }
-    console.log('holo paused');
+    // console.log('holo paused');
   } else {
     if (useTick) {
       tick();
     } else {
       loop();
     }
-    console.log('holo resumed');
+    // console.log('holo resumed');
   }
 }
 
 function settingChange(changes, area) {
   if (area == 'local') {
-    console.log(changes);
+    // console.log(changes);
     period = changes.period ? changes.period.newValue : period;
     t0 = changes.lastAlarm ? changes.lastAlarm.newValue : t0;
     updateHolo(holo, t0, Date.now(), period);
@@ -108,11 +108,11 @@ holo.style.margin = 0;
 holo.style.border = 'none';
 holo.style.height = '2px';
 holo.style.opacity = 1;
-holo.style.transition = 'none';
+holo.style.transition = 'background-color 0.5s ease-out, box-shadow 0.5s ease-out';
 holo.style['z-index'] = '2147483647'; // max z-index for many browsers
 
 chrome.storage.local.get(['holo', 'period', 'lastAlarm', 'useTick', 'color'], function (items) {
-  console.log(items);
+  // console.log(items);
   period = items.period;
   t0 = items.lastAlarm;
   useTick = items.useTick;
