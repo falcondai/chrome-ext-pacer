@@ -6,7 +6,7 @@ a chrome browser extension that nudges you every X minutes to help better pace y
 
 screenshot
 ----------
-![screenshot](https://raw.github.com/falcondai/chrome-ext-pacer/master/graphics/screenshot.png)
+![screenshot](https://raw.github.com/falcondai/chrome-ext-pacer/master/graphics/holo-red-screenshot.png)
 
 license
 -------

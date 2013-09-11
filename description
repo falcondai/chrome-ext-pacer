@@ -1,11 +1,15 @@
-It nudges you every X minutes via a brief audible tone and an ephemeral desktop notification popup, both optional. 
+It nudges you every X minutes via a brief audible tone, an ephemeral desktop notification popup, and a slim countdown progress bar, all optional and configurable. 
 
 This tool aids you to achieve higher productivity. I built it for myself and found it useful.
 
-The feature set is minimalist but every feature is well-crafted. The options page is self-explanatory:
-* set the time interval of the nudge, from 1 to 60 minutes.
-* mute or adjust the volume of a brief audible tone.
-* show or hide the desktop notification popup.
-* option to enter a motivational quote to show in the notification popup.
+The feature set is minimalist but every feature is well-crafted.
+* option to enter a motivational quote to show in the desktop notification popup.
+* audible tone volume adjustment.
+* red/blue color for the countdown progress bar.
+* code optimized to minimize its computation resource usage.
+
+Privacy: this extension uses an optional, revocable permission to show the countdown progress bar onto webpages. No data on webpages is accessed. 
+
+This extension is an open source software with source code at https://github.com/falcondai/chrome-ext-pacer
 
 Please leave feedback and I will incorporate them in future releases.

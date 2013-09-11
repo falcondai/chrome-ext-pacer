@@ -33,9 +33,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	console.log('installed:', details);
 
 	localStorage.setItem('period', localStorage.getItem('period') || 10);
-	chrome.storage.local.get(['color', 'holo', 'useTick'], function(items) {
+	chrome.storage.local.get(['color', 'holo', 'useTick', 'period'], function(items) {
 		chrome.storage.local.set({
-			period: +localStorage.getItem('period') || 10,
+			period: items.period || +localStorage.getItem('period') || 10,
 			color: items.color || 'blue',
 			holo: items.holo || localStorage.getItem('holo') || 'hide',
 			useTick: items.useTick || true,
@@ -45,6 +45,13 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	localStorage.setItem('volume', localStorage.getItem('volume') || 0.5);
 	localStorage.setItem('show notifications', localStorage.getItem('show notifications') || 'false');
 	localStorage.setItem('quote', localStorage.getItem('quote') || '');
+
+	chrome.alarms.create('pace', {
+    periodInMinutes: +localStorage.getItem('period')
+  });
+  chrome.storage.local.set({
+		lastAlarm: Date.now(),
+	});
 
 	chrome.permissions.contains({
 		permissions: ['tabs'],
@@ -64,7 +71,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	} else if (details.reason == 'update') {
 		var notification = webkitNotifications.createNotification(
 			'/assets/image/logo.png', 
-			'Pacer is updated',
+			'Pacer is updated with new features',
 			'click to visit options page'
 		);
 		notification.onclick = function () {
@@ -74,17 +81,10 @@ chrome.runtime.onInstalled.addListener(function (details) {
 			this.cancel();
 		}
 		notification.show();
-		setTimeout(function () {
-			notification.cancel();
-		}, 5000);
+		// setTimeout(function () {
+		// 	notification.cancel();
+		// }, 5000);
 	}
-
-	chrome.alarms.create('pace', {
-    periodInMinutes: +localStorage.getItem('period')
-  });
-  chrome.storage.local.set({
-		lastAlarm: Date.now(),
-	});
 });
 
 chrome.runtime.onStartup.addListener(function () {
@@ -116,9 +116,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 			chrome.tabs.executeScript(null, {
 				file: '/holo.js'
 			});
-			chrome.tabs.executeScript(null, {
-				file: '/inject.js'
-			});
+			// chrome.tabs.executeScript(null, {
+			// 	file: '/inject.js'
+			// });
 		}
 	}
 });

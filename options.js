@@ -171,7 +171,6 @@ if (localStorage.getItem('holo') != 'hide') {
   holoElmt.checked = false;
   disableToggles();
 }
-document.body.appendChild(holo);
 
 // set up action links
 var eid = chrome.runtime.id,
