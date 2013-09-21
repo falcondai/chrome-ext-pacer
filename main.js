@@ -69,18 +69,18 @@ chrome.runtime.onInstalled.addListener(function (details) {
 			url: chrome.extension.getURL('/options.html')
 		});
 	} else if (details.reason == 'update') {
-		var notification = webkitNotifications.createNotification(
-			'/assets/image/logo.png', 
-			'Pacer is updated with new features',
-			'click to visit options page'
-		);
-		notification.onclick = function () {
-			chrome.tabs.create({
-				url: chrome.extension.getURL('/options.html')
-			});
-			this.cancel();
-		}
-		notification.show();
+		// var notification = webkitNotifications.createNotification(
+		// 	'/assets/image/logo.png', 
+		// 	'Pacer is updated',
+		// 	'click to visit options page'
+		// );
+		// notification.onclick = function () {
+		// 	chrome.tabs.create({
+		// 		url: chrome.extension.getURL('/options.html')
+		// 	});
+		// 	this.cancel();
+		// };
+		// notification.show();
 		// setTimeout(function () {
 		// 	notification.cancel();
 		// }, 5000);
@@ -116,9 +116,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 			chrome.tabs.executeScript(null, {
 				file: '/holo.js'
 			});
-			// chrome.tabs.executeScript(null, {
-			// 	file: '/inject.js'
-			// });
 		}
 	}
 });
